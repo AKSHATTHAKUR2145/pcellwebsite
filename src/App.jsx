@@ -2,6 +2,7 @@ import { useState } from "react";
 import Home from "./components/Home";
 import About from "./components/About";
 import People from "./components/People";
+import StudentZone from "./components/StudentZone";
 
 export default function App() {
   const [page, setPage] = useState("home");
@@ -24,19 +25,21 @@ export default function App() {
       </div>
 
       {/* NAVBAR */}
-      <div className="flex justify-center gap-10 py-4 bg-blue-900 text-white cursor-pointer">
-        <p onClick={() => setPage("home")}>HOME</p>
-        <p onClick={() => setPage("about")}>ABOUT</p>
-        <p onClick={() => setPage("people")}>PEOPLE</p>
-        <p>PLACEMENT</p>
-        <p>ADMIN LOGIN</p>
-      </div>
-
+      
+<div className="flex justify-center gap-10 py-4 bg-blue-900 text-white cursor-pointer">
+  <p onClick={() => setPage("home")}>HOME</p>
+  <p onClick={() => setPage("about")}>ABOUT</p>
+  <p onClick={() => setPage("people")}>PEOPLE</p>
+  <p onClick={() => setPage("student")}>STUDENT ZONE</p>
+  <p>PLACEMENT</p>
+  <p>ADMIN LOGIN</p>
+</div>
       {/* PAGES */}
       <div className="flex-grow">
         {page === "home" && <Home />}
         {page === "about" && <About />}
         {page === "people" && <People />}
+        {page === "student" && <StudentZone />}
       </div>
 
       {/* FOOTER */}
