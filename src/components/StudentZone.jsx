@@ -14,7 +14,7 @@ export default function StudentZone() {
       </div>
 
       <div className="grid grid-cols-3 gap-6">
-
+``
         <div className="bg-white p-4 rounded-xl shadow text-center">
           <p className="font-semibold">Placement Updates</p>
           <p className="text-sm text-gray-500">Latest company visits</p>
