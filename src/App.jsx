@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import People from "./components/People";
 import StudentZone from "./components/StudentZone";
+import Placement from "./components/Placement";
 
 export default function App() {
   const [page, setPage] = useState("home");
@@ -31,7 +32,7 @@ export default function App() {
   <p onClick={() => setPage("about")}>ABOUT</p>
   <p onClick={() => setPage("people")}>PEOPLE</p>
   <p onClick={() => setPage("student")}>STUDENT ZONE</p>
-  <p>PLACEMENT</p>
+  <p onClick={() => setPage("placement")}>PLACEMENT</p>
   <p>ADMIN LOGIN</p>
 </div>
       {/* PAGES */}
@@ -40,6 +41,7 @@ export default function App() {
         {page === "about" && <About />}
         {page === "people" && <People />}
         {page === "student" && <StudentZone />}
+        {page === "placement" && <Placement />}
       </div>
 
       {/* FOOTER */}
