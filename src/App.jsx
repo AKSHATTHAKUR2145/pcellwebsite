@@ -2,11 +2,17 @@ import { useState } from "react";
 import Home from "./components/Home";
 import About from "./components/About";
 import People from "./components/People";
+<<<<<<< HEAD
 import StudentZone from "./components/StudentZone";
 import Placement from "./components/Placement";
+=======
+import AdminLogin from "./components/AdminLogin";
+import AdminPanel from "./components/AdminPanel";
+>>>>>>> 4a6cfc3 (your message)
 
 export default function App() {
   const [page, setPage] = useState("home");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
@@ -26,6 +32,7 @@ export default function App() {
       </div>
 
       {/* NAVBAR */}
+<<<<<<< HEAD
       
 <div className="flex justify-center gap-10 py-4 bg-blue-900 text-white cursor-pointer">
   <p onClick={() => setPage("home")}>HOME</p>
@@ -35,13 +42,28 @@ export default function App() {
   <p onClick={() => setPage("placement")}>PLACEMENT</p>
   <p>ADMIN LOGIN</p>
 </div>
+=======
+      <div className="flex justify-center gap-10 py-4 bg-blue-900 text-white cursor-pointer">
+        <p onClick={() => setPage("home")}>HOME</p>
+        <p onClick={() => setPage("about")}>ABOUT</p>
+        <p onClick={() => setPage("people")}>PEOPLE</p>
+        <p>PLACEMENT</p>
+        <p onClick={() => setPage("admin")}>ADMIN LOGIN</p>
+      </div>
+
+>>>>>>> 4a6cfc3 (your message)
       {/* PAGES */}
       <div className="flex-grow">
-        {page === "home" && <Home />}
+        {page === "home" && <Home isAdmin={isAdmin} />}
         {page === "about" && <About />}
         {page === "people" && <People />}
+<<<<<<< HEAD
         {page === "student" && <StudentZone />}
         {page === "placement" && <Placement />}
+=======
+        {page === "admin" && !isAdmin && <AdminLogin setIsAdmin={setIsAdmin} setPage={setPage} />}
+        {page === "admin" && isAdmin && <AdminPanel />} 
+>>>>>>> 4a6cfc3 (your message)
       </div>
 
       {/* FOOTER */}
