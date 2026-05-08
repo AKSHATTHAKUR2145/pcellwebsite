@@ -111,7 +111,7 @@ export default function Placement() {
   }
 
   return(
-    <div className="p-10 space-y-16">
+    <div className="p-6 space-y-16">
 
       {/* RECRUITERS */}
 

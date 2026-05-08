@@ -35,7 +35,7 @@ export default function AdminPanel() {
 
   return (
 
-    <div className="p-10 space-y-6">
+    <div className="p-6 space-y-6">
 
       <h2 className="text-2xl font-bold text-blue-900">
         Admin Control Panel

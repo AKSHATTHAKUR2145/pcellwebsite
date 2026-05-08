@@ -1,6 +1,6 @@
 export default function StudentZone() {
   return (
-    <div className="p-10 space-y-6">
+    <div className="p-6 space-y-6">
 
       <div className="bg-white p-6 rounded-xl shadow">
         <h2 className="text-xl font-bold text-blue-900 mb-3">

@@ -1,6 +1,6 @@
 export default function People() {
   return (
-    <div className="p-10 space-y-10">
+    <div className="p-6 space-y-10">
 
       {/* DIRECTOR */}
       <div className="bg-white p-6 rounded-xl shadow flex gap-6 items-center">
