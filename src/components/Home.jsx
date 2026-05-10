@@ -98,17 +98,17 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
       setImages(storedImages);
     } else {
       setImages([
-        "/hero image/image 1.png",
-        "/hero image/image 2.png",
-        "/hero image/image 3.png",
-        "/hero image/image 4.jpeg",
-        "/hero image/image 5.jpeg",
-        "/hero image/image 6.png",
-        "/hero image/image 7.jpeg",
-        "/hero image/image 8.jpeg",
-        "/hero image/image 9.jpeg",
-        "/hero image/image 10.jpeg",
-        "/hero image/image 11.jpeg",
+        "/heroimage/image 1.png",
+        "/heroimage/image 2.png",
+        "/heroimage/image 3.png",
+        "/heroimage/image 4.jpeg",
+        "/heroimage/image 5.jpeg",
+        "/heroimage/image 6.png",
+        "/heroimage/image 7.jpeg",
+        "/heroimage/image 8.jpeg",
+        "/heroimage/image 9.jpeg",
+        "/heroimage/image 10.jpeg",
+        "/heroimage/image 11.jpeg",
       ]);
     }
   }, []);
