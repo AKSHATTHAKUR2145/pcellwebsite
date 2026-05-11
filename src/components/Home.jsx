@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-export default function Home({ isAdmin, setPage, setStudentTab }) {
+export default function Home({ isAdmin }) {
 
   const text = "Welcome to Placement Cell";
 
@@ -11,37 +11,23 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
   const [images, setImages] = useState([]);
 
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-  const [type, setType] = useState("internship");
+  const [type, setType] = useState("updates");
   const [title, setTitle] = useState("");
-  const [link, setLink] = useState("");
-  const [hasLink, setHasLink] = useState(false);
 
   /* ================= ADD UPDATE ================= */
 
   const addUpdate = () => {
-    if (!title.trim()) return;
     const stored = JSON.parse(localStorage.getItem("updates")) || [];
     stored.push({
       title,
       type,
       date: new Date().toLocaleDateString(),
-      link: hasLink ? link.trim() : "",
+      link: "#",
     });
     localStorage.setItem("updates", JSON.stringify(stored));
     setUpdates(stored);
     setTitle("");
-    setLink("");
-    setHasLink(false);
     setShowUpdateForm(false);
-  };
-
-  /* ================= DELETE UPDATE ================= */
-
-  const deleteUpdate = (index) => {
-    const stored = JSON.parse(localStorage.getItem("updates")) || [];
-    stored.splice(index, 1);
-    localStorage.setItem("updates", JSON.stringify(stored));
-    setUpdates([...stored]);
   };
 
   /* ================= IMAGE UPLOAD ================= */
@@ -83,13 +69,8 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
   /* ================= LOAD DATA ================= */
 
   useEffect(() => {
-    const load = () => {
-      const storedUpdates = JSON.parse(localStorage.getItem("updates")) || [];
-      setUpdates(storedUpdates);
-    };
-    load();
-    window.addEventListener("storage", load);
-    return () => window.removeEventListener("storage", load);
+    const storedUpdates = JSON.parse(localStorage.getItem("updates"));
+    if (storedUpdates) setUpdates(storedUpdates);
   }, []);
 
   useEffect(() => {
@@ -98,17 +79,17 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
       setImages(storedImages);
     } else {
       setImages([
-        "/heroimage/image 1.png",
-        "/heroimage/image 2.png",
-        "/heroimage/image 3.png",
-        "/heroimage/image 4.jpeg",
-        "/heroimage/image 5.jpeg",
-        "/heroimage/image 6.png",
-        "/heroimage/image 7.jpeg",
-        "/heroimage/image 8.jpeg",
-        "/heroimage/image 9.jpeg",
-        "/heroimage/image 10.jpeg",
-        "/heroimage/image 11.jpeg",
+        "/heroimage/1.png",
+        "/heroimage/2.png",
+        "/heroimage/3.png",
+        "/heroimage/4.jpeg",
+        "/heroimage/5.jpeg",
+        "/heroimage/6.png",
+        "/heroimage/7.jpeg",
+        "/heroimage/8.jpeg",
+        "/heroimage/9.jpeg",
+        "/heroimage/10.jpeg",
+        "/heroimage/11.jpeg",
       ]);
     }
   }, []);
@@ -123,7 +104,7 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
     return () => clearInterval(slider);
   }, [images]);
 
-  /* ================= PARALLAX ================= */
+  /* ================= SECTION 1 PARALLAX ================= */
 
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -158,109 +139,56 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
                 Latest Updates
                 {isAdmin && (
                   <button
-                    onClick={() => setShowUpdateForm((v) => !v)}
+                    onClick={() => setShowUpdateForm(true)}
                     className="bg-blue-900 text-white px-2 rounded"
                   >
-                    {showUpdateForm ? "✕" : "+"}
+                    +
                   </button>
                 )}
               </h2>
 
-              {/* ── ADMIN ADD FORM ── */}
               {showUpdateForm && (
-                <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 mb-4 space-y-2">
+                <div className="bg-gray-100 p-3 rounded mb-4">
                   <select
-                    className="border p-2 w-full rounded-lg text-sm"
+                    className="border p-2 w-full mb-2"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
                   >
-                    <option value="internship">💼 Internship</option>
-                    <option value="drives">🏢 Placement Drive</option>
-                    <option value="material">📢 Announcements & Notices</option>
+                    <option value="updates">Updates</option>
+                    <option value="internship">Internship</option>
+                    <option value="drives">Drives</option>
                   </select>
-
                   <input
                     type="text"
-                    placeholder="Enter title / update"
-                    className="border p-2 w-full rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter title"
+                    className="border p-2 w-full mb-2"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
-
-                  <label className="flex items-center gap-2 cursor-pointer select-none text-sm text-gray-600">
-                    <input
-                      type="checkbox"
-                      checked={hasLink}
-                      onChange={(e) => setHasLink(e.target.checked)}
-                      className="w-4 h-4 accent-blue-900"
-                    />
-                    Add a registration / link
-                  </label>
-
-                  {hasLink && (
-                    <input
-                      type="text"
-                      placeholder="Paste link (e.g. https://forms.google.com/...)"
-                      className="border p-2 w-full rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      value={link}
-                      onChange={(e) => setLink(e.target.value)}
-                    />
-                  )}
-
                   <button
                     onClick={addUpdate}
-                    className="bg-blue-900 text-white px-4 py-1.5 rounded-lg text-sm w-full hover:bg-blue-700 transition"
+                    className="bg-blue-900 text-white px-4 py-1 rounded"
                   >
-                    Save Update
+                    Save
                   </button>
                 </div>
               )}
 
-              {/* ── UPDATE LIST ── */}
               <div className="space-y-3 overflow-y-auto pr-2">
                 {updates.length === 0 && (
                   <p className="text-gray-400 text-sm">No updates available</p>
                 )}
-                {updates.map((item, index) => {
-                  const typeLabel = {
-                    internship: "💼 Internship",
-                    drives:     "🏢 Placement Drive",
-                    material:   "📢 Announcements & Notices",
-                  }[item.type] || item.type;
-
-                  return (
-                    <div
-                      key={index}
-                      className="relative border-l-4 border-blue-900 pl-3 py-2 pr-7 rounded hover:bg-blue-50 transition group"
-                    >
-                      {/* ── RED DELETE CROSS (admin only) ── */}
-                      {isAdmin && (
-                        <button
-                          onClick={() => deleteUpdate(index)}
-                          title="Remove update"
-                          className="absolute top-1 right-1 w-5 h-5 rounded-full bg-red-500 hover:bg-red-700 text-white text-[10px] font-bold flex items-center justify-center transition opacity-70 hover:opacity-100"
-                        >
-                          ✕
-                        </button>
-                      )}
-
-                      <p className="font-semibold text-sm text-gray-800">{item.title}</p>
-
-                      {item.link && item.link.trim() !== "" && (
-                        <a
-                          href={item.link.startsWith("http") ? item.link : `https://${item.link}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 mt-1 text-xs font-semibold text-white bg-blue-700 hover:bg-blue-900 px-2 py-0.5 rounded-full transition"
-                        >
-                          🔗 Register / Open Link ↗
-                        </a>
-                      )}
-
-                      <p className="text-xs text-gray-500 mt-1">{typeLabel} • {item.date}</p>
-                    </div>
-                  );
-                })}
+                {updates.map((item, index) => (
+                  <div
+                    key={index}
+                    className="border-l-4 border-blue-900 pl-3 py-2 rounded"
+                  >
+                    <p className="font-semibold">{item.title}</p>
+                    <p className="text-sm text-gray-500">
+                      {item.type} • {item.date}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -312,6 +240,7 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
           </h2>
           <div className="flex items-center gap-10">
 
+            {/* IMAGE slides in from LEFT */}
             <motion.img
               src="/director.png"
               initial={{ x: -200, opacity: 0 }}
@@ -321,6 +250,7 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
               className="w-[40%] h-[320px] object-cover rounded-xl shadow-lg border-2 border-blue-900"
             />
 
+            {/* TEXT slides in from RIGHT */}
             <motion.div
               initial={{ x: 200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -346,6 +276,7 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
       </div>
 
       {/* ================= SECTION 3 : TPO ================= */}
+      {/* Uses identical animation pattern as Director — whileInView scroll-triggered */}
       <div className="min-h-screen flex items-center px-10 bg-gray-100">
         <div className="w-full">
           <h2 className="text-3xl font-bold text-blue-900 mb-8">
@@ -353,6 +284,7 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
           </h2>
           <div className="flex items-center gap-10">
 
+            {/* TEXT slides in from LEFT (mirrored vs director) */}
             <motion.div
               initial={{ x: -200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -374,6 +306,7 @@ export default function Home({ isAdmin, setPage, setStudentTab }) {
               </button>
             </motion.div>
 
+            {/* IMAGE slides in from RIGHT */}
             <motion.img
               src="/tpo.png"
               initial={{ x: 200, opacity: 0 }}
