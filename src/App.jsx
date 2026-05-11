@@ -32,7 +32,7 @@ export default function App() {
       <div className="flex items-center justify-between px-10 py-3 bg-white shadow">
         <img src="/davvLogo.png" className="h-10" alt="DAVV" />
         <div className="text-center">
-          <h1 className="text-xl font-semibold text-blue-900">Placement Cell IIPS</h1>
+          <h1 className="text-xl font-semibold text-blue-900">IIPS Career Connect </h1>
           <p className="text-sm text-gray-500">DAVV - Indore</p>
         </div>
         <img src="/iipsLogo.png" className="h-10" alt="IIPS" />

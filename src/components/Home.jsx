@@ -68,12 +68,7 @@ export default function Home({ isAdmin }) {
 
   /* ================= LOAD DATA ================= */
 
-  useEffect(() => {
-    const storedUpdates = JSON.parse(localStorage.getItem("updates"));
-    if (storedUpdates) setUpdates(storedUpdates);
-  }, []);
-
-  useEffect(() => {
+ useEffect(() => {
     const storedImages = JSON.parse(localStorage.getItem("images"));
     if (storedImages && storedImages.length > 0) {
       setImages(storedImages);
@@ -93,7 +88,6 @@ export default function Home({ isAdmin }) {
       ]);
     }
   }, []);
-
   /* ================= IMAGE SLIDER ================= */
 
   useEffect(() => {
