@@ -273,7 +273,7 @@ export default function Placement({ isAdmin }) {
       <section>
         <div className="flex items-center gap-3 mb-6">
           <div className="w-1 h-8 bg-blue-900 rounded-full" />
-          <h2 className="text-2xl font-extrabold text-blue-900 tracking-tight">Placement Demographics</h2>
+          <h2 className="text-2xl font-extrabold text-blue-900 tracking-tight">Placement Highlights</h2>
         </div>
 
         {/* batch toggle + admin add */}
